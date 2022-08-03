@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import CounterContextProvider from "./context/CounterContextProvider";
+import Layout from "./pages/Layout";
+import MainPage from "./pages/MainPage";
+import SettingPage from "./pages/SettingsPage";
+import DetailsPage from "./pages/DetailsPage";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CounterContextProvider>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="setting" element={<SettingPage />} />
+          <Route path="details" element={<DetailsPage />} />
+        </Routes>
+      </Layout>
+    </CounterContextProvider>
   );
-}
+};
 
 export default App;
